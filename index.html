@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIFA World Cup 2026 – Live Stream</title>
+  <meta name="description" content="Watch FIFA World Cup 2026 live online. Stream all matches free in HD with multiple server options. Never miss a goal!" />
+  <meta name="keywords" content="FIFA World Cup 2026 live stream, World Cup 2026 online, watch football live, free football streaming" />
+  <meta property="og:title" content="FIFA World Cup 2026 – Live Stream" />
+  <meta property="og:description" content="Watch every FIFA World Cup 2026 match live and free in HD." />
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/330px-2026_FIFA_World_Cup_emblem.svg.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #050508;
+      --dark:    #0d0d14;
+      --card:    #12121c;
+      --border:  #1e1e2e;
+      --gold:    #FFD700;
+      --gold2:   #FFA500;
+      --green:   #1a4a2e;
+      --green2:  #27ae60;
+      --white:   #FFFFFF;
+      --fog:     #8a8a9a;
+      --live-red:#ff3b3b;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── PARTICLES ── */
+    #particles {
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      opacity: 0;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: .6; }
+      90%  { opacity: .3; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px;
+      background: linear-gradient(90deg, #050508 0%, #0a0a12 50%, #050508 100%);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 30px rgba(255,215,0,.08);
+    }
+
+    .header-left {
+      display: flex; align-items: center; gap: 14px;
+    }
+
+    .logo-wrap {
+      position: relative;
+      width: 52px; height: 52px;
+      flex-shrink: 0;
+    }
+    .logo-wrap::before {
+      content: '';
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(var(--gold), var(--gold2), var(--green2), var(--gold));
+      animation: spinBorder 3s linear infinite;
+    }
+    @keyframes spinBorder {
+      to { transform: rotate(360deg); }
+    }
+    .logo-wrap img {
+      position: relative; z-index: 1;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: var(--black);
+      padding: 4px;
+    }
+
+    .header-title h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      letter-spacing: 2px;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--white) 60%, var(--gold2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header-title p {
+      font-size: .72rem;
+      color: var(--fog);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .live-badge {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(255,59,59,.15);
+      border: 1px solid rgba(255,59,59,.4);
+      border-radius: 20px;
+      padding: 5px 12px;
+      animation: pulseBadge 2s ease-in-out infinite;
+    }
+    @keyframes pulseBadge {
+      0%,100% { box-shadow: 0 0 0 0 rgba(255,59,59,.3); }
+      50%      { box-shadow: 0 0 0 6px rgba(255,59,59,0); }
+    }
+    .live-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--live-red);
+      animation: blink 1.2s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .live-badge span {
+      font-size: .75rem; font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--live-red);
+    }
+
+    /* ── HERO STRIP ── */
+    .hero-strip {
+      position: relative; z-index: 5;
+      text-align: center;
+      padding: 12px 20px 10px;
+      background: linear-gradient(180deg, rgba(255,215,0,.06) 0%, transparent 100%);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .hero-strip::after {
+      content: '';
+      position: absolute; left: 0; bottom: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      animation: shimmer 2.5s linear infinite;
+    }
+    @keyframes shimmer {
+      0%  { transform: translateX(-100%); }
+      100%{ transform: translateX(100%); }
+    }
+    .match-info {
+      display: flex; justify-content: center; align-items: center; gap: 16px;
+      flex-wrap: wrap;
+    }
+    .team { font-family:'Bebas Neue',sans-serif; font-size:clamp(1rem,3vw,1.4rem); letter-spacing:1px; }
+    .vs {
+      font-size:.75rem; font-weight:700; color:var(--gold);
+      background:rgba(255,215,0,.1);
+      border:1px solid rgba(255,215,0,.3);
+      border-radius:4px; padding:4px 10px; letter-spacing:2px;
+    }
+
+    /* ── MAIN PLAYER ── */
+    .player-section {
+      position: relative; z-index: 5;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 16px 16px 0;
+    }
+
+    .player-wrapper {
+      position: relative;
+      width: 100%; max-width: 1100px;
+      background: #000;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 60px rgba(255,215,0,.10), 0 20px 60px rgba(0,0,0,.7);
+      aspect-ratio: 16/9;
+      transition: box-shadow .4s ease;
+    }
+    .player-wrapper:hover {
+      box-shadow: 0 0 80px rgba(255,215,0,.18), 0 20px 70px rgba(0,0,0,.8);
+    }
+
+    /* corner accents */
+    .player-wrapper::before,
+    .player-wrapper::after {
+      content: '';
+      position: absolute;
+      width: 30px; height: 30px;
+      z-index: 20; pointer-events: none;
+    }
+    .player-wrapper::before {
+      top: 0; left: 0;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+      border-radius: 14px 0 0 0;
+    }
+    .player-wrapper::after {
+      bottom: 0; right: 0;
+      border-bottom: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
+      border-radius: 0 0 14px 0;
+    }
+
+    .player-iframe {
+      width: 100%; height: 100%;
+      border: none; display: block;
+      opacity: 0;
+      transition: opacity .5s ease;
+    }
+    .player-iframe.loaded { opacity: 1; }
+
+    /* loading overlay */
+    .player-loader {
+      position: absolute; inset: 0;
+      background: var(--dark);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 20px;
+      transition: opacity .4s ease, visibility .4s ease;
+      z-index: 15;
+    }
+    .player-loader.hidden { opacity: 0; visibility: hidden; }
+
+    .loader-ring {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,215,0,.15);
+      border-top-color: var(--gold);
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-text {
+      font-size: .8rem; font-weight: 500;
+      color: var(--fog); letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    /* active server info bar */
+    .active-server-bar {
+      width: 100%; max-width: 1100px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 10px;
+      padding: 8px 14px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      gap: 10px;
+    }
+    .active-label {
+      font-size: .72rem; color: var(--fog); letter-spacing: 1px; text-transform: uppercase;
+    }
+    .active-name {
+      font-size: .85rem; font-weight: 600; color: var(--gold);
+    }
+    .quality-badge {
+      font-size: .65rem; font-weight: 700; letter-spacing: 1.5px;
+      background: rgba(39,174,96,.15);
+      border: 1px solid rgba(39,174,96,.4);
+      color: var(--green2);
+      padding: 3px 9px; border-radius: 20px;
+    }
+
+    /* ── SERVER GRID ── */
+    .servers-section {
+      position: relative; z-index: 5;
+      padding: 20px 16px 30px;
+      max-width: 1132px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-eyebrow {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px;
+    }
+    .eyebrow-line { flex: 1; height: 1px; background: var(--border); }
+    .eyebrow-text {
+      font-size: .7rem; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--fog);
+      white-space: nowrap;
+    }
+
+    .server-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+    }
+
+    .server-btn {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 10px 10px;
+      cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      transition: all .25s ease;
+      overflow: hidden;
+      outline: none;
+      color: var(--white);
+    }
+
+    .server-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,215,0,.07) 0%, transparent 70%);
+      opacity: 0; transition: opacity .25s ease;
+    }
+    .server-btn:hover::before, .server-btn.active::before { opacity: 1; }
+
+    .server-btn::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      transition: width .3s ease;
+    }
+    .server-btn:hover::after, .server-btn.active::after { width: 100%; }
+
+    .server-btn:hover {
+      border-color: rgba(255,215,0,.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.4), 0 0 12px rgba(255,215,0,.08);
+    }
+
+    .server-btn.active {
+      border-color: var(--gold);
+      background: rgba(255,215,0,.08);
+      box-shadow: 0 0 20px rgba(255,215,0,.15), inset 0 0 20px rgba(255,215,0,.04);
+    }
+
+    .server-icon {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,215,0,.15), rgba(255,165,0,.1));
+      border: 1px solid rgba(255,215,0,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem; transition: all .25s ease;
+    }
+    .server-btn.active .server-icon,
+    .server-btn:hover .server-icon {
+      background: linear-gradient(135deg, rgba(255,215,0,.3), rgba(255,165,0,.2));
+      border-color: var(--gold);
+      box-shadow: 0 0 10px rgba(255,215,0,.3);
+    }
+
+    .server-label {
+      font-size: .72rem; font-weight: 600; letter-spacing: .5px;
+      text-align: center;
+    }
+    .server-btn.active .server-label { color: var(--gold); }
+
+    .server-tag {
+      font-size: .6rem; color: var(--fog); letter-spacing: .5px;
+    }
+    .server-btn.active .server-tag { color: rgba(255,215,0,.6); }
+
+    /* active pulse ring */
+    .server-btn.active .server-icon::after {
+      content: '';
+      position: absolute;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      animation: pulseRing 1.5s ease-out infinite;
+    }
+    @keyframes pulseRing {
+      0%   { transform: scale(1); opacity: .7; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 5;
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      color: var(--fog);
+      font-size: .72rem;
+      letter-spacing: .5px;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--card);
+      border: 1px solid var(--gold);
+      border-radius: 30px;
+      padding: 10px 22px;
+      font-size: .8rem; font-weight: 500; color: var(--white);
+      box-shadow: 0 8px 30px rgba(0,0,0,.5), 0 0 20px rgba(255,215,0,.15);
+      z-index: 1000;
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .35s ease;
+      opacity: 0;
+      white-space: nowrap;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header { padding: 10px 14px; }
+      .logo-wrap { width: 40px; height: 40px; }
+      .logo-wrap img { width: 40px; height: 40px; }
+      .server-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .server-btn { padding: 10px 6px 8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Ambient particles -->
+<div id="particles" aria-hidden="true"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-left">
+    <div class="logo-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/330px-2026_FIFA_World_Cup_emblem.svg.png"
+           alt="FIFA World Cup 2026 Logo" loading="eager" />
+    </div>
+    <div class="header-title">
+      <h1>World Cup 2026</h1>
+      <p>Live Streaming · HD Quality</p>
+    </div>
+  </div>
+  <div class="live-badge" role="status" aria-label="Live broadcast">
+    <div class="live-dot"></div>
+    <span>LIVE</span>
+  </div>
+</header>
+
+<!-- HERO STRIP -->
+<div class="hero-strip">
+  <div class="match-info">
+    <span class="team" id="teamA">🏆 FIFA WORLD CUP 2026</span>
+    <span class="vs">LIVE</span>
+    <span class="team" id="teamB">USA · CANADA · MEXICO 🌎</span>
+  </div>
+</div>
+
+<!-- PLAYER -->
+<div class="player-section">
+  <div class="player-wrapper" id="playerWrapper">
+
+    <div class="player-loader" id="playerLoader">
+      <div class="loader-ring"></div>
+      <p class="loader-text">Loading Stream…</p>
+    </div>
+
+    <iframe
+      id="mainPlayer"
+      class="player-iframe"
+      src=""
+      allowfullscreen
+      allow="autoplay; fullscreen; encrypted-media"
+      scrolling="no"
+      title="FIFA World Cup 2026 Live Stream"
+    ></iframe>
+
+  </div>
+
+  <div class="active-server-bar">
+    <div>
+      <div class="active-label">Now Playing</div>
+      <div class="active-name" id="activeServerName">Server 1</div>
+    </div>
+    <div class="quality-badge">HD LIVE</div>
+  </div>
+</div>
+
+<!-- SERVER GRID -->
+<section class="servers-section" aria-label="Stream Servers">
+  <div class="section-eyebrow">
+    <div class="eyebrow-line"></div>
+    <div class="eyebrow-text">Choose a Server</div>
+    <div class="eyebrow-line"></div>
+  </div>
+
+  <div class="server-grid" id="serverGrid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>⚽ Streaming may vary by region &nbsp;·&nbsp; Switch servers if stream doesn't load &nbsp;·&nbsp;
+     <a href="https://www.fifa.com" target="_blank" rel="noopener">Official FIFA Website</a>
+  </p>
+  <p style="margin-top:6px">© 2026 FIFA World Cup Live · For entertainment purposes</p>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+<script>
+  /* ── DATA ── */
+  const servers = [
+    { name: 'Server 1',  url: 'https://www.gajarbotol.site/play.php?id=61'  },
+    { name: 'Server 2',  url: 'https://www.gajarbotol.site/play.php?id=124' },
+    { name: 'Server 3',  url: 'https://www.gajarbotol.site/o.php'           },
+    { name: 'Server 4',  url: 'https://bokul-cdn.primesports.top/sp/play.php?url=https://ww2.sporttsonline.click/channels/hd/hd1.php' },
+    { name: 'Server 5',  url: 'https://bokul-cdn.primesports.top/sp/play.php?url=https://ww2.sporttsonline.click/channels/hd/hd5.php' },
+    { name: 'Server 6',  url: 'https://bokul-cdn.primesports.top/sp/play.php?url=https://ww2.sporttsonline.click/channels/hd/hd2.php' },
+    { name: 'Server 7',  url: 'https://bokul-cdn.primesports.top/sp/play.php?url=https://ww2.sporttsonline.click/channels/hd/hd6.php' },
+    { name: 'Server 8',  url: 'https://bokul-cdn.primesports.top/sp/play.php?url=https://ww2.sporttsonline.click/channels/hd/hd4.php' },
+    { name: 'Server 9',  url: 'https://bokul-cdn.primesports.top/sp/play.php?url=https://ww2.sporttsonline.click/channels/hd/hd9.php' },
+    { name: 'Server 10', url: 'https://bokul-cdn.primesports.top/sp/play.php?url=https://ww2.sporttsonline.click/channels/hd/hd8.php' },
+    { name: 'Server 11', url: 'https://bokul-cdn.primesports.top/sp/play.php?url=https://ww2.sporttsonline.click/channels/hd/hd7.php' },
+  ];
+
+  const icons = ['📡','📺','🛰️','🔴','⚡','🌐','📶','🔥','💫','🎯','⭐'];
+
+  let currentIndex = 0;
+
+  /* ── BUILD SERVER GRID ── */
+  const grid = document.getElementById('serverGrid');
+  servers.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'server-btn' + (i === 0 ? ' active' : '');
+    btn.dataset.index = i;
+    btn.setAttribute('aria-label', `Stream via ${s.name}`);
+    btn.innerHTML = `
+      <div class="server-icon">${icons[i] || '📡'}</div>
+      <div class="server-label">${s.name}</div>
+      <div class="server-tag">HD Stream</div>
+    `;
+    btn.addEventListener('click', () => switchServer(i));
+    grid.appendChild(btn);
+  });
+
+  /* ── PLAYER LOGIC ── */
+  const iframe     = document.getElementById('mainPlayer');
+  const loader     = document.getElementById('playerLoader');
+  const activeName = document.getElementById('activeServerName');
+
+  function switchServer(index) {
+    if (index === currentIndex) return;
+    currentIndex = index;
+
+    // Update active button
+    document.querySelectorAll('.server-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === index);
+    });
+
+    // Show loader, reset iframe
+    loader.classList.remove('hidden');
+    iframe.classList.remove('loaded');
+    iframe.src = '';
+
+    activeName.textContent = servers[index].name;
+
+    // Small delay for visual effect
+    setTimeout(() => {
+      iframe.src = servers[index].url;
+    }, 350);
+
+    showToast(`Switching to ${servers[index].name}…`);
+  }
+
+  function hideLoader() {
+    loader.classList.add('hidden');
+    iframe.classList.add('loaded');
+  }
+
+  iframe.addEventListener('load', () => {
+    if (iframe.src && iframe.src !== window.location.href) {
+      setTimeout(hideLoader, 600);
+    }
+  });
+
+  // Auto-load first server after slight delay
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      iframe.src = servers[0].url;
+    }, 500);
+  });
+
+  /* ── TOAST ── */
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  /* ── PARTICLES ── */
+  const container = document.getElementById('particles');
+  const colors = ['#FFD700','#FFA500','#ffffff','#27ae60','#FFD700'];
+  const count = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 35;
+
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 3 + 1.5;
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      width: ${size}px;
+      height: ${size}px;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      animation-duration: ${6 + Math.random() * 10}s;
+      animation-delay: ${Math.random() * 8}s;
+      filter: blur(${Math.random() > .5 ? 1 : 0}px);
+    `;
+    container.appendChild(p);
+  }
+
+  /* ── STRUCTURED DATA (JSON-LD) ── */
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "SportsEvent",
+    "name": "FIFA World Cup 2026",
+    "description": "Watch all FIFA World Cup 2026 matches live online in HD.",
+    "startDate": "2026-06-11",
+    "endDate": "2026-07-19",
+    "location": {
+      "@type": "Place",
+      "name": "USA, Canada & Mexico",
+      "address": "North America"
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "FIFA",
+      "url": "https://www.fifa.com"
+    },
+    "image": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/330px-2026_FIFA_World_Cup_emblem.svg.png"
+  };
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.text = JSON.stringify(ld);
+  document.head.appendChild(script);
+</script>
+</body>
+</html>
